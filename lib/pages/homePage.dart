@@ -15,13 +15,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   Future<bool> _getData() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 2));
     return true;
   }
 
- /* Future<List<dynamic>?> _getData() async {
+  /* Future<List<dynamic>?> _getData() async {
 
 
     final url = Uri.https(
@@ -66,13 +65,14 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       "Carregando",
                       style: TextStyle(
-                        color: Colors.black, fontSize: 16,
+                        color: Colors.black,
+                        fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
                 );
-              default :
+              default:
                 if (snapshot.hasError) {
                   print(snapshot.error);
                   return Center(
@@ -84,188 +84,150 @@ class _HomePageState extends State<HomePage> {
                       textAlign: TextAlign.center,
                     ),
                   );
-                }
-                else {
+                } else {
                   return _homePage(context);
                 }
             }
-          }
-
-
-      ),
+          }),
     );
   }
-  }
+}
 
 PageController _pageController = PageController();
 
-
-Widget _homePage(BuildContext context){
-    return PageView(
-        controller: _pageController,
-        physics: NeverScrollableScrollPhysics(),
-        children: [
-          Scaffold(
-            appBar:AppBar(
+Widget _homePage(BuildContext context) {
+  return PageView(
+      controller: _pageController,
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Row(
+              children: [
+                Padding(padding: EdgeInsets.only(left: 100)),
+                Text(
+                  'Auto',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  'Sport',
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w600),
+                )
+              ],
+            ),
+          ),
+          backgroundColor: Colors.black,
+          body: categoriaPage(),
+          drawer: CustomDrawer(_pageController),
+        ), //Primeira age
+        Scaffold(
+            appBar: AppBar(
               backgroundColor: Colors.black,
-              title:
-              Row(
+              title: Row(
                 children: [
                   Padding(padding: EdgeInsets.only(left: 100)),
-                  Text('Auto',style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600
-                  ),),
-                  Text('Sport',style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w600
-                  ),)
+                  Text(
+                    'Auto',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Sport',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.w600),
+                  )
                 ],
-
               ),
             ),
-            backgroundColor: Colors.black,
-            body: categoriaPage(),
             drawer: CustomDrawer(_pageController),
-          ),//Primeira age
-          Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.black,
-                title:
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 100)),
-                    Text('Auto',style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),),
-                    Text('Sport',style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600
-                    ),)
-                  ],
-
-                ),
-              ),
-              drawer: CustomDrawer(_pageController),
+            backgroundColor: Colors.black,
+            body: ColaboradoresPage()), // segunda Page
+        Scaffold(
+            appBar: AppBar(
               backgroundColor: Colors.black,
-              body: ColaboradoresPage()
-          ), // segunda Page
-          Scaffold(
-              appBar:AppBar(
-                backgroundColor: Colors.black,
-                title:
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 100)),
-                    Text('Auto',style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),),
-                    Text('Sport',style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600
-                    ),)
-                  ],
-
-                ),
+              title: Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 100)),
+                  Text(
+                    'Auto',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Sport',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.w600),
+                  )
+                ],
               ),
-              drawer: CustomDrawer(_pageController),
-              body:
-              Container(
-                  child:
-                  ClientePage()
-
-              )
-          ),//terceira page
-          Scaffold(
-              appBar:AppBar(
-                backgroundColor: Colors.black,
-                title:
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 100)),
-                    Text('Auto',style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),),
-                    Text('Sport',style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600
-                    ),)
-                  ],
-
-                ),
+            ),
+            drawer: CustomDrawer(_pageController),
+            body: Container(child: ClientePage())), //terceira page
+        Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              title: Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 100)),
+                  Text(
+                    'Auto',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Sport',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.w600),
+                  )
+                ],
               ),
-              drawer: CustomDrawer(_pageController),
-              body:
-              Container(
-                  child:
-                  ProdutosPage()
-
-              )
-          ),//quarta PAge
-          Scaffold(
-              appBar:AppBar(
-                backgroundColor: Colors.black,
-                title:
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 100)),
-                    Text('Auto',style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),),
-                    Text('Sport',style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600
-                    ),)
-                  ],
-
-                ),
+            ),
+            drawer: CustomDrawer(_pageController),
+            body: Container(child: ProdutosPage())), //quarta PAge
+        Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              title: Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 100)),
+                  Text(
+                    'Auto',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Sport',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.w600),
+                  )
+                ],
               ),
-              drawer: CustomDrawer(_pageController),
-              body:
-              Container(
-                  child:
-                  Fornecedorpage()
-
-              )
-          ),//quinta page
-          Scaffold(
-              appBar:AppBar(
-                backgroundColor: Colors.black,
-                title:
-                Row(
-                  children: [
-                    Padding(padding: EdgeInsets.only(left: 100)),
-                    Text('Auto',style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600
-                    ),),
-                    Text('Sport',style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600
-                    ),)
-                  ],
-
-                ),
+            ),
+            drawer: CustomDrawer(_pageController),
+            body: Container(child: FornecedorPage())), //quinta page
+        Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.black,
+              title: Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(left: 100)),
+                  Text(
+                    'Auto',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    'Sport',
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.w600),
+                  )
+                ],
               ),
-              drawer: CustomDrawer(_pageController),
-              body:
-              Container(
-                  child:
-                  VendasPage()
-
-              )
-          ),//sexta page
-
-
-
-        ]);
-
-
-  }
-
-
-
+            ),
+            drawer: CustomDrawer(_pageController),
+            body: Container(child: VendasPage())), //sexta page
+      ]);
+}
