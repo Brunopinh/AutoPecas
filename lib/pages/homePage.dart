@@ -143,7 +143,7 @@ Widget _homePage(BuildContext context) {
               ),
             ),
             drawer: CustomDrawer(_pageController),
-            backgroundColor: Colors.black,
+            backgroundColor: const Color.fromARGB(255, 245, 239, 239),
             body: ColaboradoresPage()), // segunda Page
         Scaffold(
             appBar: AppBar(
